@@ -3,21 +3,21 @@ using System.Collections;
 
 public class Door : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}	
-	
-	// Update is called once per frame
-	void Update () {
+    // Use this for initialization
+    void Start () {
+    
+    }	
+    
+    // Update is called once per frame
+    void Update () {
 
-	}
+    }
 
-	public void open()
-	{
+    public void open()
+    {
         Invoke("close", 3f);
         gameObject.SetActive(false);
-	}
+    }
 
     private void close()
     {
@@ -32,7 +32,7 @@ public class Door : MonoBehaviour {
             if (c.thisCollider.tag == "Player")
             {
                 Player p = c.thisCollider.gameObject.GetComponent<Player>();
-                p.NearestDoor = this;
+                p.nearestDoor = this;
 
             }
         }
@@ -45,7 +45,7 @@ public class Door : MonoBehaviour {
             if (c.thisCollider.tag == "Player")
             {
                 Player p = c.thisCollider.gameObject.GetComponent<Player>();
-                p.NearestDoor = null;
+                p.nearestDoor = null;
 
             }
         }
