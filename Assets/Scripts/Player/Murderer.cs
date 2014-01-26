@@ -14,6 +14,11 @@ public class Murderer : Player {
     }
 
     protected override void OnPressX() {
-        
+        currentRoom.Trap();
+    }
+
+    protected override void OnPressA()
+    {
+        throw new System.NotImplementedException();
     }
 }
