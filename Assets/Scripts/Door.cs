@@ -16,13 +16,29 @@ public class Door : MonoBehaviour {
     public void open()
     {
         Invoke("close", 3f);
-        gameObject.SetActive(false);
+
+        Transform [] objects = gameObject.GetComponentsInChildren<Transform>();
+        foreach(Transform t in objects)
+        {
+            if(t.tag == "OpenDoor")
+                t.gameObject.SetActive(true);
+            if (t.tag == "ClosedDoor")
+                t.gameObject.SetActive(false);
+        }
+
+
     }
 
     private void close()
     {
-        gameObject.SetActive(true);
-
+        Transform[] objects = gameObject.GetComponentsInChildren<Transform>();
+        foreach (Transform t in objects)
+        {
+            if (t.tag == "OpenDoor")
+                t.gameObject.SetActive(false);
+            if (t.tag == "ClosedDoor")
+                t.gameObject.SetActive(true);
+        }
     }
     
     void OnCollisionEnter2D(Collision2D collider)

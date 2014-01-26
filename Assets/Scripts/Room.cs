@@ -8,7 +8,7 @@ public class Room : MonoBehaviour {
     private List<Player> Occupants = new List<Player>();
     private bool hasBomb;
 
-    public float DetonationDelay = 0.0f;
+    private float DetonationDelay = 0.0f;
     private bool triggered;
 
 	void Start () {
@@ -21,7 +21,7 @@ public class Room : MonoBehaviour {
 	}
 
 
-    void OnCollisionEnter(Collision2D collider)
+    void OnCollisionEnter2D(Collision2D collider)
     {
         foreach (ContactPoint2D c in collider.contacts)
         {
