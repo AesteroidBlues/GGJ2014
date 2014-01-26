@@ -55,8 +55,13 @@ public class Murderer : Player {
     {
         if (currentRoom != null)
         {
-            currentRoom.Trap();
-            OnReleaseX();
+            bool success = currentRoom.Trap();
+            if ( success ) {
+                ActionAnim.GetComponent<Animator>().SetTrigger( "Success" );
+            } else {
+                ActionAnim.GetComponent<Animator>().SetTrigger( "Fail" );
+            }
+            Invoke( "OnReleaseX", 0.19f );
         }
     }
 

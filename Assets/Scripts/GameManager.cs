@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour {
     public GameObject p3;
     public GameObject p4;
 
+    public GameObject bloodstain;
+
     private System.Random random = new System.Random(System.DateTime.Now.Millisecond);
 
     private bool murdererChosen = false;
@@ -91,6 +93,7 @@ public class GameManager : MonoBehaviour {
 
     public void KillPlayer( Player p ) {
         playersKilled.Enqueue( "Player " + p.id );
+        GameObject.Instantiate( bloodstain, p.gameObject.transform.position, Quaternion.identity );
         Destroy( p.gameObject );
         Invoke( "ClearKilledPlayer", 2.5f );
     }

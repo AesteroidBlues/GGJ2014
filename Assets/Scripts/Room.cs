@@ -48,7 +48,7 @@ public class Room : MonoBehaviour {
         }
     }
 
-    public void Search()
+    public bool Search()
     {
         Debug.Log( "Searched" );
         if (keyObjectsInRoom > 0)
@@ -58,15 +58,18 @@ public class Room : MonoBehaviour {
             {
                 main.FoundKeyObject();
                 keyObjectsInRoom--;
+                return true;
+                
             }
             else
                 Debug.LogWarning("maindoor not set");
         }
+        return false;
     }
 
     
     
-    public void Trap()
+    public bool Trap()
     {
         Debug.Log( "Trapped" );
         int x = Random.Range(1, 5);
@@ -80,6 +83,8 @@ public class Room : MonoBehaviour {
 
         triggered = false;
         hasBomb = true;
+
+        return keyObjectsInRoom > 0;
     }
 
     public void TriggerBomb()

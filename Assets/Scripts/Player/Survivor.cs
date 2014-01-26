@@ -33,8 +33,13 @@ public class Survivor : Player {
     {
         if (currentRoom != null)
         {
-            currentRoom.Search();
-            OnReleaseX();
+            bool success = currentRoom.Search();
+            if ( success ) {
+                ActionAnim.GetComponent<Animator>().SetTrigger( "Success" );
+            } else {
+                ActionAnim.GetComponent<Animator>().SetTrigger( "Fail" );
+            }
+            Invoke( "OnReleaseX", 0.19f );
         }
     }
 }
