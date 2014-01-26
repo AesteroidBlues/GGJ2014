@@ -12,8 +12,10 @@ public abstract class Player : MonoBehaviour {
     public GameObject ActionAnim;
     public float ActionAnimSpeed = 1.0f;
     public float ActionSpeed = 0.75f;
+    public bool CanMove = true;
 
     protected abstract void OnPressX();
+
     protected void OnPressA()
     {
     }
