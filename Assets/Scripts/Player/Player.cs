@@ -13,10 +13,15 @@ public abstract class Player : MonoBehaviour {
     public float ActionAnimSpeed = 1.0f;
 
     protected abstract void OnPressX();
-    protected abstract void OnPressA();
+    protected void OnPressA()
+    {
+    }
 
     protected abstract void OnReleaseX();
-    //protected abstract void OnReleaseA();
+    protected void OnReleaseA()
+    {
+        OpenDoor();
+    }
 
     bool xPressed = false;
     bool aPressed = false;
@@ -28,20 +33,26 @@ public abstract class Player : MonoBehaviour {
     }
 
     void Update() {
-        //if ( XInputManager.GetXButton( GetIndex() ) && !xPressed ) {
-        //    xPressed = true;
-        //    OnPressX();
-        //} else if ( XInputManager.GetXButton( GetIndex() ) && xPressed ) {
-        //    xPressed = false;
-        //    OnReleaseX();
-        //}
-        //if ( XInputManager.GetAButton( GetIndex() ) && !aPressed ) {
-        //    aPressed = true;
-        //    OnPressA();
-        //} else if ( XInputManager.GetAButton( GetIndex() ) && aPressed ) {
-        //    aPressed = false;
-        //    OnReleaseA();
-        //}
+        if (XInputManager.GetXButton(GetIndex()) && !xPressed)
+        {
+            xPressed = true;
+            OnPressX();
+        }
+        else if (!XInputManager.GetXButton(GetIndex()) && xPressed)
+        {
+            xPressed = false;
+            OnReleaseX();
+        }
+        if (XInputManager.GetAButton(GetIndex()) && !aPressed)
+        {
+            aPressed = true;
+            OnPressA();
+        }
+        else if (!XInputManager.GetAButton(GetIndex()) && aPressed)
+        {
+            aPressed = false;
+            OnReleaseA();
+        }
     }
 
     void OpenDoor() {

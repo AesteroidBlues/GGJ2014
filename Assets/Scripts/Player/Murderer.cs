@@ -11,11 +11,7 @@ public class Murderer : Player {
 
     }
     
-    // Update is called once per frame
-    void Update () {
-        
-    }
-
+   
     protected override void OnPressX() {
         if (currentRoom)
         {
@@ -42,10 +38,6 @@ public class Murderer : Player {
         GamePad.SetVibration( GetIndex(), 0f, 0f );
     }
 
-    protected override void OnPressA()
-    {
-        throw new System.NotImplementedException();
-    }
 
     protected override void OnReleaseX()
     {
