@@ -35,7 +35,7 @@ public class Murderer : Player {
         if (currentRoom != null)
         {
             ActionAnim.renderer.enabled = true;
-            ActionAnim.GetComponent<Animator>().speed = ActionAnimSpeed;
+            ActionAnim.GetComponent<Animator>().speed = ( ActionAnimSpeed / 2 );
             ActionAnim.GetComponent<Animator>().SetBool("PerformAction", true);
             Invoke("TrapRoom", ActionAnimSpeed);
         }

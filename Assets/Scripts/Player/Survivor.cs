@@ -13,8 +13,8 @@ public class Survivor : Player {
         if (currentRoom != null)
         {
             Debug.Log( "X Pressed" );
-            ActionAnim.renderer.enabled = false;
-            ActionAnim.GetComponent<Animator>().speed = ActionAnimSpeed;
+            ActionAnim.renderer.enabled = true;
+            ActionAnim.GetComponent<Animator>().speed = ( ActionAnimSpeed / 2 );
             ActionAnim.GetComponent<Animator>().SetBool("PerformAction", true);
             Invoke("SearchRoom", ActionAnimSpeed);
         }
@@ -25,7 +25,7 @@ public class Survivor : Player {
     {
         Debug.Log( "X Released" );
         CancelInvoke("SearchRoom");
-        ActionAnim.renderer.enabled = true;
+        ActionAnim.renderer.enabled = false;
         ActionAnim.GetComponent<Animator>().SetBool("PerformAction", false);
     }
 

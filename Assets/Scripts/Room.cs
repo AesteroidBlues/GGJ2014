@@ -25,7 +25,6 @@ public class Room : MonoBehaviour {
     {
         if (collider.tag == "Player")
         {
-            Debug.Log( "Room found player " + collider.gameObject.name );
             Player p = collider.gameObject.GetComponent<Player>();
             if (!Occupants.Contains(p))
                 Occupants.Add(p);
