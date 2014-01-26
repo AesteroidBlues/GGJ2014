@@ -72,7 +72,8 @@ public class Room : MonoBehaviour {
 
     private void Detonate()
     {
-
+        foreach (Player p in Occupants)
+            p.Kill();
     }
 
 
