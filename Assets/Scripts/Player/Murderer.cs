@@ -12,16 +12,7 @@ public class Murderer : Player {
     }
     
    
-    protected override void OnPressX() {
-        if (currentRoom != null)
-        {
-            currentRoom.Trap();
-            ActionAnim.renderer.gameObject.SetActive(true);
-            ActionAnim.GetComponent<Animator>().speed = ActionAnimSpeed;
-            ActionAnim.GetComponent<Animator>().SetBool("PerformAction", true);
-            Invoke("OnReleaseX", ActionAnimSpeed);
-        }
-    }
+   
 
     private void RightBeat() {
         Debug.Log( "RightBeat Called" );
@@ -39,10 +30,30 @@ public class Murderer : Player {
     }
 
 
+    protected override void OnPressX()
+    {
+        if (currentRoom != null)
+        {
+            
+            ActionAnim.renderer.gameObject.SetActive(true);
+            ActionAnim.GetComponent<Animator>().speed = ActionAnimSpeed;
+            ActionAnim.GetComponent<Animator>().SetBool("PerformAction", true);
+            Invoke("TrapRoom", ActionAnimSpeed);
+        }
+    }
+
     protected override void OnReleaseX()
     {
-        CancelInvoke("OnReleaseX");
+        CancelInvoke("TrapRoom");
         ActionAnim.renderer.enabled = true;
         ActionAnim.GetComponent<Animator>().SetBool("PerformAction", false);
+    }
+
+    private void TrapRoom()
+    {
+        if (currentRoom != null)
+        {
+            currentRoom.Trap();
+        }
     }
 }
