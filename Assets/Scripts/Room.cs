@@ -38,13 +38,19 @@ public class Room : MonoBehaviour {
         }
     }
 
-    void OnTriggerExit2D( Collider2D collider )
+    void OnTriggerExit2D(Collider2D collider)
     {
         Debug.LogWarning( "leaving" );
         if (collider.tag == "Player")
         {
             Player p = collider.gameObject.GetComponent<Player>();
+
+
             Occupants.Remove(p);
+            if (p.GetType() == typeof(Murderer) && Occupants.Count > 0)
+            {
+                TriggerBomb();
+            }
             p.currentRoom = null;
         }
     }

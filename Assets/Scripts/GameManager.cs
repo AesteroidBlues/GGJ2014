@@ -91,7 +91,10 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    public int PlayersKilled = 0;
+    public int PlayersEscaped = 0;
     public void KillPlayer( Player p ) {
+        PlayersKilled++;
         playersKilled.Enqueue( "Player " + p.id );
         GameObject.Instantiate( bloodstain, p.gameObject.transform.position, Quaternion.identity );
         Destroy( p.gameObject );
@@ -99,6 +102,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void EscapePlayer( Player p ) {
+        PlayersEscaped++;
         playersEscaped.Enqueue( p.name );
         Destroy( p.gameObject );
         Invoke( "ClearEscapedPlayer", 2.5f );
@@ -110,5 +114,15 @@ public class GameManager : MonoBehaviour {
 
     void ClearEscapedPlayer() {
         playersKilled.Dequeue();
+    }
+
+    public void MurdererWon()
+    {
+
+    }
+
+    public void SurvivorsWon()
+    {
+
     }
 }
