@@ -6,6 +6,8 @@ public class Murderer : Player {
 
     // Use this for initialization
     void Start () {
+        System.Random r = new System.Random();
+        InvokeRepeating( "RightBeat", r.Next(2, 4), r.Next(10, 16) );
 
     }
     
@@ -18,7 +20,6 @@ public class Murderer : Player {
     }
 
     protected override void OnPressX() {
-        GamePad.SetVibration( GetIndex(), 1f, 1f );
         if (currentRoom)
         {
             currentRoom.Trap();
@@ -27,6 +28,21 @@ public class Murderer : Player {
             ActionAnim.GetComponent<Animator>().SetBool("PerformAction", true);
             Invoke("OnReleaseX", ActionAnimSpeed);
         }
+    }
+
+    private void RightBeat() {
+        Debug.Log( "RightBeat Called" );
+        GamePad.SetVibration( GetIndex(), 0f, 0.3f );
+        Invoke( "LeftBeat", 0.15f );
+    }
+
+    private void LeftBeat() {
+        GamePad.SetVibration( GetIndex(), 0.25f, 0f );
+        Invoke( "EndBeat", 0.4f );
+    }
+
+    private void EndBeat() {
+        GamePad.SetVibration( GetIndex(), 0f, 0f );
     }
 
     protected override void OnPressA()
