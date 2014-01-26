@@ -28,8 +28,11 @@ public abstract class Player : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+    }
 
-        ActionAnim.renderer.gameObject.SetActive(false);
+    protected void Init() {
+        ActionAnim = transform.GetChild( 0 ).gameObject;
+        ActionAnim.renderer.enabled = false;
     }
 
     void Update() {

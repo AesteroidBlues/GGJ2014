@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class Room : MonoBehaviour {
 
-	// Use this for initialization
+    // Use this for initialization
 
     private List<Player> Occupants = new List<Player>();
     private bool hasBomb;
@@ -11,14 +11,14 @@ public class Room : MonoBehaviour {
     private float DetonationDelay = 0.0f;
     private bool triggered;
 
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    void Start () {
+    
+    }
+    
+    // Update is called once per frame
+    void Update () {
+    
+    }
 
 
     void OnCollisionEnter2D(Collision2D collider)
@@ -52,13 +52,14 @@ public class Room : MonoBehaviour {
 
     public void Search()
     {
-
+        Debug.Log( "Searched" );
     }
 
     
     
     public void Trap()
     {
+        Debug.Log( "Trapped" );
         int x = Random.Range(0, 1);
         DetonationDelay = x / 10f;
         triggered = false;

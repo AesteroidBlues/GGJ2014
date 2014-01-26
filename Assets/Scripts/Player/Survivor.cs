@@ -5,7 +5,7 @@ public class Survivor : Player {
 
     // Use this for initialization
     void Start () {
-    
+        base.Init();
     }
    
 

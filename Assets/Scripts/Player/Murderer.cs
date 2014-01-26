@@ -6,9 +6,9 @@ public class Murderer : Player {
 
     // Use this for initialization
     void Start () {
+        base.Init();
         System.Random r = new System.Random();
         InvokeRepeating( "RightBeat", r.Next(2, 4), r.Next(10, 16) );
-
     }
     
    
@@ -42,7 +42,7 @@ public class Murderer : Player {
     protected override void OnReleaseX()
     {
         CancelInvoke("OnReleaseX");
-        ActionAnim.renderer.gameObject.SetActive(false);
+        ActionAnim.renderer.enabled = true;
         ActionAnim.GetComponent<Animator>().SetBool("PerformAction", false);
     }
 }
