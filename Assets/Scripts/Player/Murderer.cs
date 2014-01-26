@@ -27,7 +27,7 @@ public class Murderer : Player {
         GamePad.SetVibration( GetIndex(), 0f, 0f );
         switch ( GameObject.FindGameObjectsWithTag( "Player" ).Length ) {
             case 3: CancelInvoke( "RightBeat" ); InvokeRepeating( "RightBeat", 2, r.Next( 3, 4 ) ); break;
-            case 2: CancelInvoke( "RightBeat" ); InvokeRepeating( "RightBeat", 2, 0.8f ); break;
+            case 2: CancelInvoke( "RightBeat" ); InvokeRepeating( "RightBeat", 0.6f, 0.6f ); break;
             default: break;
         }
     }
