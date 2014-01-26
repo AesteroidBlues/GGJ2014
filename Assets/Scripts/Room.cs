@@ -69,7 +69,7 @@ public class Room : MonoBehaviour {
     public void Trap()
     {
         Debug.Log( "Trapped" );
-        int x = Random.Range(0, 1);
+        int x = Random.Range(1, 5);
         DetonationDelay = x / 10f;
 
         GameObject [] rooms = GameObject.FindGameObjectsWithTag("room");
@@ -84,8 +84,13 @@ public class Room : MonoBehaviour {
 
     public void TriggerBomb()
     {
+        bool containsMurderer = false;
 
-        if (hasBomb && !triggered)
+        foreach (Player p in Occupants)
+            if (p.GetType() == typeof(Murderer))
+                containsMurderer = true;
+
+        if (hasBomb && !triggered && !containsMurderer)
         {
             Debug.Log("bomb triggered");
             triggered = true;
