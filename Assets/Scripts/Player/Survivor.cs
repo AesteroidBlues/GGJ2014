@@ -12,7 +12,6 @@ public class Survivor : Player {
     protected override void OnPressX() {
         if (currentRoom != null)
         {
-            Debug.Log( "X Pressed" );
             ActionAnim.renderer.enabled = true;
             ActionAnim.GetComponent<Animator>().speed = ( ActionAnimSpeed );
             ActionAnim.GetComponent<Animator>().SetBool("PerformAction", true);
@@ -24,7 +23,7 @@ public class Survivor : Player {
 
     protected override void OnReleaseX()
     {
-        Debug.Log( "X Released" );
+
         CancelInvoke("SearchRoom");
         ActionAnim.renderer.enabled = false;
         ActionAnim.GetComponent<Animator>().SetBool("PerformAction", false);
@@ -33,8 +32,7 @@ public class Survivor : Player {
 
     private void SearchRoom()
     {
-        if (currentRoom != null)
-        {
+        if ( currentRoom != null ) {
             bool success = currentRoom.Search();
             if ( success ) {
                 ActionAnim.GetComponent<Animator>().SetTrigger( "Success" );
@@ -42,6 +40,8 @@ public class Survivor : Player {
                 ActionAnim.GetComponent<Animator>().SetTrigger( "Fail" );
             }
             Invoke( "OnReleaseX", 0.19f );
+        } else {
+            Debug.LogWarning( "Current room is null" );
         }
     }
 }

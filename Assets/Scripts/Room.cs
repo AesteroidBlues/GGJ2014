@@ -27,6 +27,8 @@ public class Room : MonoBehaviour {
     {
         if (collider.tag == "Player")
         {
+            Debug.Log("Player found");
+
             Player p = collider.gameObject.GetComponent<Player>();
             if (!Occupants.Contains(p))
                 Occupants.Add(p);
@@ -38,6 +40,7 @@ public class Room : MonoBehaviour {
 
     void OnTriggerExit2D(Collider2D collider)
     {
+        Debug.LogWarning( "leaving" );
         if (collider.tag == "Player")
         {
             Player p = collider.gameObject.GetComponent<Player>();
@@ -49,8 +52,6 @@ public class Room : MonoBehaviour {
                 TriggerBomb();
             }
             p.currentRoom = null;
-
-
         }
     }
 
