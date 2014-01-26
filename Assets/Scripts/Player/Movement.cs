@@ -24,6 +24,6 @@ public class Movement : MonoBehaviour {
             animator.speed = animationSpeed;
         }
 
-        rigidbody2D.velocity = move;
+        rigidbody2D.velocity = move * speed;
     }
 }
