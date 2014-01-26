@@ -34,8 +34,7 @@ public class Murderer : Player {
     {
         if (currentRoom != null)
         {
-            
-            ActionAnim.renderer.gameObject.SetActive(true);
+            ActionAnim.renderer.enabled = true;
             ActionAnim.GetComponent<Animator>().speed = ActionAnimSpeed;
             ActionAnim.GetComponent<Animator>().SetBool("PerformAction", true);
             Invoke("TrapRoom", ActionAnimSpeed);
@@ -45,7 +44,7 @@ public class Murderer : Player {
     protected override void OnReleaseX()
     {
         CancelInvoke("TrapRoom");
-        ActionAnim.renderer.enabled = true;
+        ActionAnim.renderer.enabled = false;
         ActionAnim.GetComponent<Animator>().SetBool("PerformAction", false);
     }
 

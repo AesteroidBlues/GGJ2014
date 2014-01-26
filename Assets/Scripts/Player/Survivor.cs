@@ -12,8 +12,8 @@ public class Survivor : Player {
     protected override void OnPressX() {
         if (currentRoom != null)
         {
-
-            ActionAnim.renderer.gameObject.SetActive(true);
+            Debug.Log( "X Pressed" );
+            ActionAnim.renderer.enabled = false;
             ActionAnim.GetComponent<Animator>().speed = ActionAnimSpeed;
             ActionAnim.GetComponent<Animator>().SetBool("PerformAction", true);
             Invoke("SearchRoom", ActionAnimSpeed);
@@ -23,8 +23,9 @@ public class Survivor : Player {
 
     protected override void OnReleaseX()
     {
+        Debug.Log( "X Released" );
         CancelInvoke("SearchRoom");
-        ActionAnim.renderer.gameObject.SetActive(false);
+        ActionAnim.renderer.enabled = true;
         ActionAnim.GetComponent<Animator>().SetBool("PerformAction", false);
     }
 

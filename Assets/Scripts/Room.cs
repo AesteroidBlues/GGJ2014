@@ -21,32 +21,27 @@ public class Room : MonoBehaviour {
     }
 
 
-    void OnCollisionEnter2D(Collision2D collider)
+    void OnTriggerEnter2D(Collider2D collider)
     {
-        foreach (ContactPoint2D c in collider.contacts)
+        if (collider.tag == "Player")
         {
-            if (c.collider.tag == "Player")
-            {
-                Player p = c.collider.gameObject.GetComponent<Player>();
-                if (!Occupants.Contains(p))
-                    Occupants.Add(p);
-                p.currentRoom = this;
+            Debug.Log( "Room found player " + collider.gameObject.name );
+            Player p = collider.gameObject.GetComponent<Player>();
+            if (!Occupants.Contains(p))
+                Occupants.Add(p);
+            p.currentRoom = this;
 
-            }
         }
     }
 
-    void OnCollisionExit2D(Collision2D contact)
+    void OnTriggerExit2D( Collider2D collider )
     {
-        foreach (ContactPoint2D c in contact.contacts)
+        if (collider.tag == "Player")
         {
-            if (c.collider.tag == "Player")
-            {
-                Player p = c.collider.gameObject.GetComponent<Player>();
-                Occupants.Remove(p);
-                p.currentRoom = null;
+            Player p = collider.gameObject.GetComponent<Player>();
+            Occupants.Remove(p);
+            p.currentRoom = null;
 
-            }
         }
     }
 
