@@ -18,4 +18,10 @@ public class XInputManager : MonoBehaviour {
         GamePadState state = GamePad.GetState( p );
         return state.Buttons.A == ButtonState.Pressed ? true : false;
     }
+
+    public static bool GetStart(PlayerIndex p)
+    {
+        GamePadState state = GamePad.GetState(p);
+        return state.Buttons.Start == ButtonState.Pressed ? true : false;
+    }
 }
