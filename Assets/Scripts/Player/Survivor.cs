@@ -10,10 +10,14 @@ public class Survivor : Player {
     
     // Update is called once per frame
     void Update () {
-    
+        
     }
 
     protected override void OnPressX() {
-        
+        currentRoom.Search();
+    }
+
+    protected override void OnPressA(){
+
     }
 }

@@ -19,5 +19,11 @@ public class Murderer : Player {
 
     protected override void OnPressX() {
         GamePad.SetVibration( GetIndex(id), 1f, 1f );
+        currentRoom.Trap();
+    }
+
+    protected override void OnPressA()
+    {
+        throw new System.NotImplementedException();
     }
 }

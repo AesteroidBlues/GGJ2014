@@ -7,8 +7,10 @@ public abstract class Player : MonoBehaviour {
     public int id;
     protected bool isMuderer;
     public Door nearestDoor;
+    public Room currentRoom;
 
     protected abstract void OnPressX();
+    protected abstract void OnPressA();
 
     // Use this for initialization
     void Start () {
