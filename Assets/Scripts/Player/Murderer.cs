@@ -4,11 +4,12 @@ using XInputDotNetPure;
 
 public class Murderer : Player {
 
+    System.Random r = new System.Random();
+
     // Use this for initialization
     void Start () {
         base.Init();
-        System.Random r = new System.Random();
-        InvokeRepeating( "RightBeat", r.Next(1, 2), r.Next(10, 16) );
+        InvokeRepeating( "RightBeat", r.Next(1, 2), r.Next(5, 7) );
     }
 
     private void RightBeat() {
@@ -24,6 +25,11 @@ public class Murderer : Player {
 
     private void EndBeat() {
         GamePad.SetVibration( GetIndex(), 0f, 0f );
+        switch ( GameObject.FindGameObjectsWithTag( "Player" ).Length ) {
+            case 3: CancelInvoke( "RightBeat" ); InvokeRepeating( "RightBeat", 2, r.Next( 3, 4 ) ); break;
+            case 2: CancelInvoke( "RightBeat" ); InvokeRepeating( "RightBeat", 2, 0.8f ); break;
+            default: break;
+        }
     }
 
 
@@ -53,4 +59,9 @@ public class Murderer : Player {
             OnReleaseX();
         }
     }
+
+    void OnApplicationQuit() {
+        GamePad.SetVibration( GetIndex(), 0f, 0f );
+    }
+    
 }
