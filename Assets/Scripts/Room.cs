@@ -11,6 +11,8 @@ public class Room : MonoBehaviour {
     private float DetonationDelay = 0.0f;
     private bool triggered;
 
+    private int keyObjectsInRoom = 1;
+
     void Start () {
     
     }
@@ -47,6 +49,11 @@ public class Room : MonoBehaviour {
     public void Search()
     {
         Debug.Log( "Searched" );
+        if (keyObjectsInRoom > 0)
+        {
+            GameObject.FindGameObjectWithTag("MainDoor").GetComponent<MainDoor>().FoundKeyObject();
+            keyObjectsInRoom--;
+        }
     }
 
     

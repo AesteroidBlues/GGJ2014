@@ -79,6 +79,7 @@ public abstract class Player : MonoBehaviour {
 
     public void Kill()
     {
-
+        //play dying sound
+        GameObject.Destroy(this, 0.2f);
     }
 }
