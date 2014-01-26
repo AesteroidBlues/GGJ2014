@@ -71,6 +71,13 @@ public class Room : MonoBehaviour {
         Debug.Log( "Trapped" );
         int x = Random.Range(0, 1);
         DetonationDelay = x / 10f;
+
+        GameObject [] rooms = GameObject.FindGameObjectsWithTag("room");
+        foreach(GameObject g in rooms)
+        {
+            g.GetComponent<Room>().hasBomb = false;
+        }
+
         triggered = false;
         hasBomb = true;
     }
