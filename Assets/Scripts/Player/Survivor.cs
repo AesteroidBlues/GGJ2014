@@ -7,11 +7,7 @@ public class Survivor : Player {
     void Start () {
     
     }
-    
-    // Update is called once per frame
-    void Update () {
-        
-    }
+   
 
     protected override void OnPressX() {
         if (currentRoom)
@@ -25,8 +21,6 @@ public class Survivor : Player {
         }
     }
 
-    protected override void OnPressA(){
-    }
 
     protected override void OnReleaseX()
     {
