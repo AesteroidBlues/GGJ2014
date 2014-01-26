@@ -53,6 +53,7 @@ public class Murderer : Player {
         if (currentRoom != null)
         {
             currentRoom.Trap();
+            OnReleaseX();
         }
     }
 }

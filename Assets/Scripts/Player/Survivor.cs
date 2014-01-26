@@ -34,6 +34,7 @@ public class Survivor : Player {
         if (currentRoom != null)
         {
             currentRoom.Search();
+            OnReleaseX();
         }
     }
 }

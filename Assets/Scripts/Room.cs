@@ -31,6 +31,7 @@ public class Room : MonoBehaviour {
             if (!Occupants.Contains(p))
                 Occupants.Add(p);
             p.currentRoom = this;
+            TriggerBomb();
 
         }
     }
@@ -42,6 +43,7 @@ public class Room : MonoBehaviour {
             Player p = collider.gameObject.GetComponent<Player>();
             Occupants.Remove(p);
             p.currentRoom = null;
+            
 
         }
     }
@@ -51,8 +53,14 @@ public class Room : MonoBehaviour {
         Debug.Log( "Searched" );
         if (keyObjectsInRoom > 0)
         {
-            GameObject.FindGameObjectWithTag("MainDoor").GetComponent<MainDoor>().FoundKeyObject();
-            keyObjectsInRoom--;
+            MainDoor main = GameObject.FindGameObjectWithTag("MainDoor").GetComponent<MainDoor>();
+            if (main != null)
+            {
+                main.FoundKeyObject();
+                keyObjectsInRoom--;
+            }
+            else
+                Debug.LogWarning("maindoor not set");
         }
     }
 
@@ -67,10 +75,12 @@ public class Room : MonoBehaviour {
         hasBomb = true;
     }
 
-    public void Trigger()
+    public void TriggerBomb()
     {
+
         if (hasBomb && !triggered)
         {
+            Debug.Log("bomb triggered");
             triggered = true;
             Invoke("Detonate", DetonationDelay);
         }   

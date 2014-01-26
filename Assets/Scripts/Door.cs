@@ -19,7 +19,7 @@ public class Door : MonoBehaviour {
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
         foreach(Transform t in transform)
         {
-            Debug.Log( t );
+
             if(t.tag == "OpenDoor")
                 t.gameObject.SetActive(true);
             if (t.tag == "ClosedDoor")
@@ -40,29 +40,26 @@ public class Door : MonoBehaviour {
                 t.gameObject.SetActive(true);
         }
     }
-    
-    void OnCollisionEnter2D(Collision2D collider)
+
+    void OnTriggerEnter2D(Collider2D collider)
     {
-        foreach (ContactPoint2D c in collider.contacts)
+
+        if (collider.tag == "Player")
         {
-            if (c.collider.tag == "Player")
-            {
-                Player p = c.collider.gameObject.GetComponent<Player>();
-                p.nearestDoor = this;
-            }
+            Debug.Log("triigger");
+            Player p = collider.gameObject.GetComponent<Player>();
+            p.nearestDoor = this;
+
         }
     }
 
-    void OnCollisionExit2D(Collision2D collider)
+    void OnTriggerExit2D(Collider2D collider)
     {
-        foreach (ContactPoint2D c in collider.contacts)
+        if (collider.tag == "Player")
         {
-            if (c.collider.tag == "Player")
-            {
-                Player p = c.collider.gameObject.GetComponent<Player>();
-                p.nearestDoor = null;
+            Player p = collider.gameObject.GetComponent<Player>();
+            p.nearestDoor = null;
 
-            }
         }
     }
 
