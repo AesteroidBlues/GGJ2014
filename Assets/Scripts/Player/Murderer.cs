@@ -13,10 +13,7 @@ public class Murderer : Player {
     
     // Update is called once per frame
     void Update () {
-        if ( XInputManager.GetXButton( GetIndex() ) ) {
-            Debug.Log( "ID: " + id + " pressed X" );
-            OnPressX();
-        }
+
     }
 
     protected override void OnPressX() {

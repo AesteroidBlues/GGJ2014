@@ -16,11 +16,32 @@ public abstract class Player : MonoBehaviour {
     protected abstract void OnPressA();
 
     protected abstract void OnReleaseX();
+    protected abstract void OnReleaseA();
+
+    bool xPressed = false;
+    bool aPressed = false;
 
     // Use this for initialization
     void Start () {
 
         ActionAnim.renderer.gameObject.SetActive(false);
+    }
+
+    void Update() {
+        if ( XInputManager.GetXButton( GetIndex() ) && !xPressed ) {
+            xPressed = true;
+            OnPressX();
+        } else if ( XInputManager.GetXButton( GetIndex() ) && xPressed ) {
+            xPressed = false;
+            OnReleaseX();
+        }
+        if ( XInputManager.GetAButton( GetIndex() ) && !aPressed ) {
+            aPressed = true;
+            OnPressA();
+        } else if ( XInputManager.GetAButton( GetIndex() ) && aPressed ) {
+            aPressed = false;
+            OnReleaseA();
+        }
     }
 
     void OpenDoor() {
