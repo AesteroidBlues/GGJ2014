@@ -21,9 +21,9 @@ public class GameManager : MonoBehaviour {
             GameObject newPlayer = ( GameObject ) Instantiate( playerPrefab, 
                                                                spawntags[id].transform.position,
                                                                Quaternion.identity );
-            Type t = GetPlayerType(id);
-            newPlayer.AddComponent( t.ToString() );
-            newPlayer.GetComponent<Player>().id = id;
+            Type t = GetPlayerType( id );
+            Player component = ( Player ) newPlayer.AddComponent( t.ToString() );
+            component.id = id + 1;
             players.Add( newPlayer );
         }
     }
@@ -49,18 +49,21 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private Type GetPlayerType(int id) {
-        // Choose between murderer and player at random
-        if ( !murdererChosen && id < NumberOfPlayers - 1 ) {
-            if ( random.Next() < 50 ) {
-                murdererChosen = true;
-                return typeof( Murderer );
+    private Type GetPlayerType( int id ) {
+        // Randomly assign murderer status to one of the players
+        if ( !murdererChosen ) {
+            if ( id < NumberOfPlayers - 1 ) {
+                if ( random.Next( 0, 100 ) < 25 ) {
+                    murdererChosen = true;
+                    return typeof( Murderer );
+                } else {
+                    return typeof( Survivor );
+                }
             } else {
-                return typeof( Survivor );
+                return typeof( Murderer );
             }
-        // Unless this is the last player and we haven't found a murderer yet
         } else {
-            return typeof( Murderer );
+            return typeof( Survivor );
         }
     }
 }

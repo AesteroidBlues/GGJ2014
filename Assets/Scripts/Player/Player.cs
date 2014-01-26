@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using XInputDotNetPure;
 
 public abstract class Player : MonoBehaviour {
 
@@ -24,9 +25,14 @@ public abstract class Player : MonoBehaviour {
     public void SetMurderer( bool murderer ) {
         this.isMuderer = murderer;
     }
-    
-    // Update is called once per frame
-    void Update () {
-    
+
+    protected PlayerIndex GetIndex( int id ) {
+        switch ( id ) {
+            case 1: return PlayerIndex.One;
+            case 2: return PlayerIndex.Two;
+            case 3: return PlayerIndex.Three;
+            case 4: return PlayerIndex.Four;
+            default: return PlayerIndex.One;
+        }
     }
 }

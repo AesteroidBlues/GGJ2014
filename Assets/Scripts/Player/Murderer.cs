@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using XInputDotNetPure;
 
 public class Murderer : Player {
 
@@ -10,10 +11,14 @@ public class Murderer : Player {
     
     // Update is called once per frame
     void Update () {
-    
+        if ( Input.GetButton( "X_" + id ) ) {
+            Debug.Log( "ID: " + id + " pressed X" );
+            OnPressX();
+        }
     }
 
     protected override void OnPressX() {
+        GamePad.SetVibration( GetIndex(id), 1f, 1f );
         currentRoom.Trap();
     }
 
