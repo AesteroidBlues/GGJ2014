@@ -20,7 +20,7 @@ public class CameraGUI : MonoBehaviour {
         bool murdererWon = GameObject.FindGameObjectWithTag( "GameController" ).GetComponent<GameManager>().murdererWon;
 
 
-        GUI.BeginGroup( new Rect( Screen.width / 2 - 200, Screen.height / 2 - 50, 400, 400 ) );
+        GUI.BeginGroup( new Rect( Screen.width / 2 - 100, Screen.height / 2 - 50, 400, 400 ) );
         GUI.contentColor = Color.white;
         GUI.color = Color.white;
         int y = 0;
