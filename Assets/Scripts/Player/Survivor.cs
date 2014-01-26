@@ -25,8 +25,6 @@ public class Survivor : Player {
         }
     }
 
-    protected override void OnPressA(){
-    }
 
     protected override void OnReleaseX()
     {

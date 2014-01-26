@@ -13,10 +13,13 @@ public abstract class Player : MonoBehaviour {
     public float ActionAnimSpeed = 1.0f;
 
     protected abstract void OnPressX();
-    protected abstract void OnPressA();
+    protected void OnPressA();
 
     protected abstract void OnReleaseX();
-    protected abstract void OnReleaseA();
+    protected void OnReleaseA()
+    {
+        OpenDoor();
+    }
 
     bool xPressed = false;
     bool aPressed = false;

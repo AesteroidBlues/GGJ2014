@@ -27,6 +27,14 @@ public class Murderer : Player {
         }
     }
 
+
+    protected override void OnReleaseX()
+    {
+        CancelInvoke("OnReleaseX");
+        ActionAnim.renderer.gameObject.SetActive(false);
+        ActionAnim.GetComponent<Animator>().SetBool("PerformAction", false);
+    }
+
     private void RightBeat() {
         Debug.Log( "RightBeat Called" );
         GamePad.SetVibration( GetIndex(), 0f, 0.3f );
@@ -42,15 +50,5 @@ public class Murderer : Player {
         GamePad.SetVibration( GetIndex(), 0f, 0f );
     }
 
-    protected override void OnPressA()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    protected override void OnReleaseX()
-    {
-        CancelInvoke("OnReleaseX");
-        ActionAnim.renderer.gameObject.SetActive(false);
-        ActionAnim.GetComponent<Animator>().SetBool("PerformAction", false);
-    }
+ 
 }
