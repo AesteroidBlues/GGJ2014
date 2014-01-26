@@ -21,13 +21,13 @@ public class Room : MonoBehaviour {
 	}
 
 
-    void OnCollisionEnter(Collision collider)
+    void OnCollisionEnter(Collision2D collider)
     {
-        foreach (ContactPoint c in collider.contacts)
+        foreach (ContactPoint2D c in collider.contacts)
         {
-            if (c.thisCollider.tag == "Player")
+            if (c.collider.tag == "Player")
             {
-                Player p = c.thisCollider.gameObject.GetComponent<Player>();
+                Player p = c.collider.gameObject.GetComponent<Player>();
                 if (!Occupants.Contains(p))
                     Occupants.Add(p);
                 p.currentRoom = this;
@@ -36,13 +36,13 @@ public class Room : MonoBehaviour {
         }
     }
 
-    void OnCollisionExit(Collision contact)
+    void OnCollisionExit2D(Collision2D contact)
     {
-        foreach (ContactPoint c in contact.contacts)
+        foreach (ContactPoint2D c in contact.contacts)
         {
-            if (c.thisCollider.tag == "Player")
+            if (c.collider.tag == "Player")
             {
-                Player p = c.thisCollider.gameObject.GetComponent<Player>();
+                Player p = c.collider.gameObject.GetComponent<Player>();
                 Occupants.Remove(p);
                 p.currentRoom = null;
 
