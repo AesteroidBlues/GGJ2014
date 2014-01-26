@@ -93,6 +93,10 @@ public class GameManager : MonoBehaviour {
 
     public int PlayersKilled = 0;
     public int PlayersEscaped = 0;
+    
+    public bool murdererWon;
+    public bool survivorsWon;
+
     public void KillPlayer( Player p ) {
         PlayersKilled++;
         playersKilled.Enqueue( "Player " + p.id );
@@ -103,26 +107,30 @@ public class GameManager : MonoBehaviour {
 
     public void EscapePlayer( Player p ) {
         PlayersEscaped++;
-        playersEscaped.Enqueue( p.name );
+        playersEscaped.Enqueue( "Player " + p.id );
         Destroy( p.gameObject );
         Invoke( "ClearEscapedPlayer", 2.5f );
     }
 
     void ClearKilledPlayer() {
-        playersKilled.Dequeue();
+        if ( playersKilled.Count > 0 ) {
+            playersKilled.Dequeue();
+        }
     }
 
     void ClearEscapedPlayer() {
-        playersKilled.Dequeue();
+        if ( playersEscaped.Count > 0 ) {
+            playersEscaped.Dequeue();
+        }
     }
 
     public void MurdererWon()
     {
-
+        murdererWon = true;
     }
 
     public void SurvivorsWon()
     {
-
+        survivorsWon = true;
     }
 }
