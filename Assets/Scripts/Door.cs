@@ -16,10 +16,10 @@ public class Door : MonoBehaviour {
     public void open()
     {
         Invoke("close", 3f);
-
-        Transform [] objects = gameObject.GetComponentsInChildren<Transform>();
-        foreach(Transform t in objects)
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        foreach(Transform t in transform)
         {
+            Debug.Log( t );
             if(t.tag == "OpenDoor")
                 t.gameObject.SetActive(true);
             if (t.tag == "ClosedDoor")
@@ -31,8 +31,8 @@ public class Door : MonoBehaviour {
 
     private void close()
     {
-        Transform[] objects = gameObject.GetComponentsInChildren<Transform>();
-        foreach (Transform t in objects)
+        gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        foreach (Transform t in transform)
         {
             if (t.tag == "OpenDoor")
                 t.gameObject.SetActive(false);
@@ -43,16 +43,12 @@ public class Door : MonoBehaviour {
     
     void OnCollisionEnter2D(Collision2D collider)
     {
-
-        Debug.Log("entering");
         foreach (ContactPoint2D c in collider.contacts)
         {
             if (c.collider.tag == "Player")
             {
                 Player p = c.collider.gameObject.GetComponent<Player>();
                 p.nearestDoor = this;
-                Debug.Log("setting neest door " + p);
-
             }
         }
     }
