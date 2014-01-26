@@ -11,14 +11,14 @@ public class Murderer : Player {
     
     // Update is called once per frame
     void Update () {
-        if ( Input.GetButton( "X_" + id ) ) {
+        if ( XInputManager.GetXButton( GetIndex() ) ) {
             Debug.Log( "ID: " + id + " pressed X" );
             OnPressX();
         }
     }
 
     protected override void OnPressX() {
-        GamePad.SetVibration( GetIndex(id), 1f, 1f );
+        GamePad.SetVibration( GetIndex(), 1f, 1f );
         currentRoom.Trap();
 
         ActionAnim.renderer.gameObject.SetActive(true);

@@ -32,8 +32,8 @@ public abstract class Player : MonoBehaviour {
         this.isMuderer = murderer;
     }
 
-    protected PlayerIndex GetIndex( int id ) {
-        switch ( id ) {
+    public PlayerIndex GetIndex() {
+        switch ( this.id ) {
             case 1: return PlayerIndex.One;
             case 2: return PlayerIndex.Two;
             case 3: return PlayerIndex.Three;
