@@ -19,12 +19,14 @@ public class Murderer : Player {
 
     protected override void OnPressX() {
         GamePad.SetVibration( GetIndex(), 1f, 1f );
-        currentRoom.Trap();
-
-        ActionAnim.renderer.gameObject.SetActive(true);
-        ActionAnim.GetComponent<Animator>().speed = ActionAnimSpeed;
-        ActionAnim.GetComponent<Animator>().SetBool("PerformAction", true);
-        Invoke("OnReleaseX", ActionAnimSpeed);
+        if (currentRoom)
+        {
+            currentRoom.Trap();
+            ActionAnim.renderer.gameObject.SetActive(true);
+            ActionAnim.GetComponent<Animator>().speed = ActionAnimSpeed;
+            ActionAnim.GetComponent<Animator>().SetBool("PerformAction", true);
+            Invoke("OnReleaseX", ActionAnimSpeed);
+        }
     }
 
     protected override void OnPressA()
@@ -34,7 +36,7 @@ public class Murderer : Player {
 
     protected override void OnReleaseX()
     {
-        CancelInvoke();
+        CancelInvoke("OnReleaseX");
         ActionAnim.renderer.gameObject.SetActive(false);
         ActionAnim.GetComponent<Animator>().SetBool("PerformAction", false);
     }
