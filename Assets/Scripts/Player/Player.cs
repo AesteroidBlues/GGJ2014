@@ -80,6 +80,7 @@ public abstract class Player : MonoBehaviour {
     public void Kill()
     {
         //play dying sound
+        SoundManager.Instance.PlaySound(SoundManager.Instance.Clips[6]);
         GameObject.Destroy(this, 0.2f);
     }
 }
