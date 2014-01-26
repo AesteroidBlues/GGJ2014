@@ -9,12 +9,18 @@ public abstract class Player : MonoBehaviour {
     public Door nearestDoor;
     public Room currentRoom;
 
+    public GameObject ActionAnim;
+    public float ActionAnimSpeed = 1.0f;
+
     protected abstract void OnPressX();
     protected abstract void OnPressA();
 
+    protected abstract void OnReleaseX();
+
     // Use this for initialization
     void Start () {
-        
+
+        ActionAnim.renderer.gameObject.SetActive(false);
     }
 
     void OpenDoor() {
