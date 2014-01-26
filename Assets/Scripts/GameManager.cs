@@ -4,7 +4,6 @@ using System;
 
 public class GameManager : MonoBehaviour {
 
-    public GameObject playerPrefab;
     public ArrayList players;
     public int NumberOfPlayers = 4;
 
