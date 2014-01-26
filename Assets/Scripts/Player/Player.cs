@@ -81,5 +81,6 @@ public abstract class Player : MonoBehaviour {
     {
         //play dying sound
         GameObject.FindGameObjectWithTag( "GameController" ).GetComponent<GameManager>().KillPlayer( this );
+        SoundManager.Instance.PlaySound(SoundManager.Instance.Clips[5]);
     }
 }

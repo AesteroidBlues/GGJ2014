@@ -21,13 +21,13 @@ public class CameraGUI : MonoBehaviour {
         GUI.contentColor = Color.black;
         int y = 0;
         foreach ( string killed in playersKilled ) {
-            Debug.Log( "Displaying dead player" );
             GUI.Label( new Rect( 0, y, 400, 100 ), killed + " was killed!", style );
+            y += 35;
         }
         foreach ( string escaped in playersEscaped ) {
             GUI.Label( new Rect( 0, y, 400, 100 ), escaped + " escaped the house!", style );
+            y += 35;
         }
-        y += 100;
         GUI.EndGroup();
     }
 }

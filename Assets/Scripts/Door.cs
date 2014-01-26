@@ -46,7 +46,6 @@ public class Door : MonoBehaviour {
 
         if (collider.tag == "Player")
         {
-            Debug.Log("triigger");
             Player p = collider.gameObject.GetComponent<Player>();
             p.nearestDoor = this;
 
