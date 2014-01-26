@@ -13,11 +13,15 @@ public abstract class Player : MonoBehaviour {
     public float ActionAnimSpeed = 1.0f;
 
     protected abstract void OnPressX();
-    protected void OnPressA();
+    protected void OnPressA()
+    {
+
+    }
 
     protected abstract void OnReleaseX();
     protected void OnReleaseA()
     {
+        Debug.Log("onreleasedd a");
         OpenDoor();
     }
 
@@ -31,17 +35,18 @@ public abstract class Player : MonoBehaviour {
     }
 
     void Update() {
+
         if ( XInputManager.GetXButton( GetIndex() ) && !xPressed ) {
             xPressed = true;
             OnPressX();
-        } else if ( XInputManager.GetXButton( GetIndex() ) && xPressed ) {
+        } else if ( !XInputManager.GetXButton( GetIndex() ) && xPressed ) {
             xPressed = false;
             OnReleaseX();
         }
         if ( XInputManager.GetAButton( GetIndex() ) && !aPressed ) {
             aPressed = true;
             OnPressA();
-        } else if ( XInputManager.GetAButton( GetIndex() ) && aPressed ) {
+        } else if ( !XInputManager.GetAButton( GetIndex() ) && aPressed ) {
             aPressed = false;
             OnReleaseA();
         }

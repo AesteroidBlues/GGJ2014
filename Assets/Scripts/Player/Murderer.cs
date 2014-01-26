@@ -11,11 +11,7 @@ public class Murderer : Player {
 
     }
     
-    // Update is called once per frame
-    void Update () {
-
-    }
-
+    
     protected override void OnPressX() {
         if (currentRoom)
         {

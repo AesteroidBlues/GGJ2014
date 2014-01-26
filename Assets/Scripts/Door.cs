@@ -33,6 +33,7 @@ public class Door : MonoBehaviour {
             {
                 Player p = c.thisCollider.gameObject.GetComponent<Player>();
                 p.nearestDoor = this;
+                Debug.Log("setting neest door " + p);
 
             }
         }
