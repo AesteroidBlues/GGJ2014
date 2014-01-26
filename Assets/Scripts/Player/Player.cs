@@ -76,4 +76,9 @@ public abstract class Player : MonoBehaviour {
             default: return PlayerIndex.One;
         }
     }
+
+    public void Kill()
+    {
+
+    }
 }
