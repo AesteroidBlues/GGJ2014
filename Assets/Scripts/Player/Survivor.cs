@@ -10,7 +10,7 @@ public class Survivor : Player {
    
 
     protected override void OnPressX() {
-        if (currentRoom)
+        if (currentRoom != null)
         {
             currentRoom.Search();
 

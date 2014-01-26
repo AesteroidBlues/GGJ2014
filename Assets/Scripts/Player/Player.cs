@@ -56,7 +56,7 @@ public abstract class Player : MonoBehaviour {
     }
 
     void OpenDoor() {
-        if ( nearestDoor )
+        if ( nearestDoor != null)
             nearestDoor.open();
     }
 

@@ -13,7 +13,7 @@ public class Murderer : Player {
     
    
     protected override void OnPressX() {
-        if (currentRoom)
+        if (currentRoom != null)
         {
             currentRoom.Trap();
             ActionAnim.renderer.gameObject.SetActive(true);
