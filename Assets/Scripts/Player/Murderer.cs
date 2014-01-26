@@ -8,11 +8,8 @@ public class Murderer : Player {
     void Start () {
         base.Init();
         System.Random r = new System.Random();
-        InvokeRepeating( "RightBeat", r.Next(2, 4), r.Next(10, 16) );
+        InvokeRepeating( "RightBeat", r.Next(1, 2), r.Next(10, 16) );
     }
-    
-   
-   
 
     private void RightBeat() {
         Debug.Log( "RightBeat Called" );

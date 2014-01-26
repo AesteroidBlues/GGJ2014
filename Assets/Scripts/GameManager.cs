@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System;
 
 public class GameManager : MonoBehaviour {
@@ -15,6 +16,9 @@ public class GameManager : MonoBehaviour {
     private System.Random random = new System.Random(System.DateTime.Now.Millisecond);
 
     private bool murdererChosen = false;
+
+    public Queue<string> playersEscaped;
+    public Queue<string> playersKilled;
 
     // Use this for initialization
     void Start () {
@@ -32,11 +36,13 @@ public class GameManager : MonoBehaviour {
             component.id = id + 1;
             players.Add( newPlayer );
         }
+        playersKilled = new Queue<string>();
+        playersEscaped = new Queue<string>();
     }
     
     // Update is called once per frame
     void Update () {
-    
+        
     }
 
     // Shuffles randomly NumShuffles times. The front NumShuffles in the array
@@ -81,5 +87,25 @@ public class GameManager : MonoBehaviour {
             case 3: return p4;
             default: return p1;
         }
+    }
+
+    public void KillPlayer( Player p ) {
+        playersKilled.Enqueue( "Player " + p.id );
+        Destroy( p.gameObject );
+        Invoke( "ClearKilledPlayer", 2.5f );
+    }
+
+    public void EscapePlayer( Player p ) {
+        playersEscaped.Enqueue( p.name );
+        Destroy( p.gameObject );
+        Invoke( "ClearEscapedPlayer", 2.5f );
+    }
+
+    void ClearKilledPlayer() {
+        playersKilled.Dequeue();
+    }
+
+    void ClearEscapedPlayer() {
+        playersKilled.Dequeue();
     }
 }
