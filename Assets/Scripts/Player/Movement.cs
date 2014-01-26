@@ -18,12 +18,17 @@ public class Movement : MonoBehaviour {
 
         Vector3 move = XInputManager.GetSticks( idx );
 
-        if ( move == Vector3.zero ) {
+        bool canMove = gameObject.GetComponent<Player>().CanMove;
+
+        if ( move == Vector3.zero  || !canMove) {
             animator.speed = 0;
         } else {
             animator.speed = animationSpeed;
         }
 
-        rigidbody2D.velocity = move * speed;
+        if (canMove)
+            rigidbody2D.velocity = move * speed;
+        else
+            rigidbody2D.velocity = Vector3.zero;
     }
 }

@@ -41,6 +41,7 @@ public class Murderer : Player {
             ActionAnim.GetComponent<Animator>().speed = ( ActionAnimSpeed );
             ActionAnim.GetComponent<Animator>().SetBool("PerformAction", true);
             Invoke( "TrapRoom", ActionSpeed );
+            CanMove = false;
         }
     }
 
@@ -49,6 +50,7 @@ public class Murderer : Player {
         CancelInvoke("TrapRoom");
         ActionAnim.renderer.enabled = false;
         ActionAnim.GetComponent<Animator>().SetBool("PerformAction", false);
+        CanMove = true;
     }
 
     private void TrapRoom()

@@ -17,6 +17,7 @@ public class Survivor : Player {
             ActionAnim.GetComponent<Animator>().speed = ( ActionAnimSpeed );
             ActionAnim.GetComponent<Animator>().SetBool("PerformAction", true);
             Invoke( "SearchRoom", ActionSpeed );
+            CanMove = false;
         }
     }
 
@@ -27,6 +28,7 @@ public class Survivor : Player {
         CancelInvoke("SearchRoom");
         ActionAnim.renderer.enabled = false;
         ActionAnim.GetComponent<Animator>().SetBool("PerformAction", false);
+        CanMove = true;
     }
 
     private void SearchRoom()
