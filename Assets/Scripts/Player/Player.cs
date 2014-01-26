@@ -11,6 +11,7 @@ public abstract class Player : MonoBehaviour {
 
     public GameObject ActionAnim;
     public float ActionAnimSpeed = 1.0f;
+    public float ActionSpeed = 0.75f;
 
     protected abstract void OnPressX();
     protected void OnPressA()
@@ -80,7 +81,7 @@ public abstract class Player : MonoBehaviour {
     public void Kill()
     {
         //play dying sound
-        SoundManager.Instance.PlaySound(SoundManager.Instance.Clips[6]);
-        GameObject.Destroy(this, 0.2f);
+        GameObject.FindGameObjectWithTag( "GameController" ).GetComponent<GameManager>().KillPlayer( this );
+        SoundManager.Instance.PlaySound(SoundManager.Instance.Clips[5]);
     }
 }

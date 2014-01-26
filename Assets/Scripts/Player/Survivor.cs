@@ -14,9 +14,9 @@ public class Survivor : Player {
         {
             Debug.Log( "X Pressed" );
             ActionAnim.renderer.enabled = true;
-            ActionAnim.GetComponent<Animator>().speed = ( ActionAnimSpeed / 2 );
+            ActionAnim.GetComponent<Animator>().speed = ( ActionAnimSpeed );
             ActionAnim.GetComponent<Animator>().SetBool("PerformAction", true);
-            Invoke("SearchRoom", ActionAnimSpeed);
+            Invoke( "SearchRoom", ActionSpeed );
         }
     }
 
