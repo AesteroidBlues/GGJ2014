@@ -24,14 +24,16 @@ public class Door : MonoBehaviour {
         gameObject.SetActive(true);
 
     }
-
-    void OnCollisionEnter(Collision collider)
+    
+    void OnCollisionEnter2D(Collision2D collider)
     {
-        foreach (ContactPoint c in collider.contacts)
+
+        Debug.Log("entering");
+        foreach (ContactPoint2D c in collider.contacts)
         {
-            if (c.thisCollider.tag == "Player")
+            if (c.collider.tag == "Player")
             {
-                Player p = c.thisCollider.gameObject.GetComponent<Player>();
+                Player p = c.collider.gameObject.GetComponent<Player>();
                 p.nearestDoor = this;
                 Debug.Log("setting neest door " + p);
 
@@ -39,13 +41,13 @@ public class Door : MonoBehaviour {
         }
     }
 
-    void OnCollisionExit(Collision contact)
+    void OnCollisionExit2D(Collision2D collider)
     {
-        foreach (ContactPoint c in contact.contacts)
+        foreach (ContactPoint2D c in collider.contacts)
         {
-            if (c.thisCollider.tag == "Player")
+            if (c.collider.tag == "Player")
             {
-                Player p = c.thisCollider.gameObject.GetComponent<Player>();
+                Player p = c.collider.gameObject.GetComponent<Player>();
                 p.nearestDoor = null;
 
             }

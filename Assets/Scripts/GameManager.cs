@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour {
                                                                Quaternion.identity );
             Type t = GetPlayerType( id );
             Player component = ( Player ) newPlayer.AddComponent( t.ToString() );
+            newPlayer.tag = "Player";
             component.id = id + 1;
             players.Add( newPlayer );
         }
