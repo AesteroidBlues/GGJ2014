@@ -23,7 +23,7 @@ public class CameraGUI : MonoBehaviour {
         bool ambiguousWin = GameObject.FindGameObjectWithTag( "GameController" ).GetComponent<GameManager>().ambiguousWin;
 
 
-        GUI.BeginGroup( new Rect( Screen.width / 2 - 150, Screen.height / 2 - 50, 600, 400 ) );
+        GUI.BeginGroup( new Rect( Screen.width / 2 - 200, Screen.height / 2 - 50, 600, 400 ) );
         GUI.contentColor = Color.white;
         GUI.color = Color.white;
         int y = 0;
@@ -50,7 +50,7 @@ public class CameraGUI : MonoBehaviour {
                 survivors = survivors + survivor + ", ";
             }
             survivors = survivors.Substring( 0, survivors.Length - 2 );
-            GUI.Label( new Rect( 0, y, 400, 100 ), survivors + " escaped the murderer!", style );
+            GUI.Label( new Rect( 0, y, 600, 100 ), survivors + " escaped the murderer!", style );
             y += 35;
         }
 
