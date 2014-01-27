@@ -42,6 +42,7 @@ public class Murderer : Player {
             ActionAnim.GetComponent<Animator>().SetBool("PerformAction", true);
             Invoke( "TrapRoom", ActionSpeed );
             CanMove = false;
+            SoundManager.Instance.PlaySound(SoundManager.Instance.Clips[4]);
         }
     }
 
