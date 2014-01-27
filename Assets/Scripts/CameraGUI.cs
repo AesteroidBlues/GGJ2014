@@ -16,12 +16,15 @@ public class CameraGUI : MonoBehaviour {
     void OnGUI() {
         Queue<string> playersKilled = GameObject.FindGameObjectWithTag( "GameController" ).GetComponent<GameManager>().playersKilled;
         Queue<string> playersEscaped = GameObject.FindGameObjectWithTag( "GameController" ).GetComponent<GameManager>().playersEscaped;
+        List<string> survivorsEscaped = GameObject.FindGameObjectWithTag( "GameController" ).GetComponent<GameManager>().survivorsEscaped;
+
         bool survivorsWon = GameObject.FindGameObjectWithTag( "GameController" ).GetComponent<GameManager>().survivorsWon;
         bool murdererWon = GameObject.FindGameObjectWithTag( "GameController" ).GetComponent<GameManager>().murdererWon;
+        bool ambiguousWin = GameObject.FindGameObjectWithTag( "GameController" ).GetComponent<GameManager>().ambiguousWin;
 
         Debug.LogWarning( survivorsWon );
 
-        GUI.BeginGroup( new Rect( Screen.width / 2 - 100, Screen.height / 2 - 50, 400, 400 ) );
+        GUI.BeginGroup( new Rect( Screen.width / 2 - 200, Screen.height / 2 - 50, 600, 400 ) );
         GUI.contentColor = Color.white;
         GUI.color = Color.white;
         int y = 0;
@@ -41,6 +44,14 @@ public class CameraGUI : MonoBehaviour {
         if ( survivorsWon ) {
             Debug.LogWarning( "Survivors Won!" );
             GUI.Label( new Rect( 0, y, 400, 100 ), "SURVIVORS WON!", style );
+            y += 35;
+        } if ( ambiguousWin ) {
+            string survivors = "";
+            foreach ( string survivor in survivorsEscaped ) {
+                survivors = survivors + survivor + ", ";
+            }
+            survivors = survivors.Substring( 0, survivors.Length - 2 );
+            GUI.Label( new Rect( 0, y, 400, 100 ), survivors + " escaped the murderer!", style );
             y += 35;
         }
 

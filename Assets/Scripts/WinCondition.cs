@@ -11,11 +11,15 @@ public class WinCondition : MonoBehaviour {
     
     // Update is called once per frame
     void Update () {
-        if (gameManager.PlayersKilled >= 3)
+        if ( gameManager.PlayersKilled >= 3 ) {
             gameManager.MurdererWon();
-        if (gameManager.PlayersEscaped >= 3)
+            return;
+        } else if ( gameManager.PlayersEscaped >= 3 ) {
             gameManager.SurvivorsWon();
-
+            return;
+        } else if( (gameManager.PlayersKilled + gameManager.PlayersEscaped ) >= 3 ) {
+            gameManager.AmbiguousWin();
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collider)

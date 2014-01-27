@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using XInputDotNetPure;
 
 public class GameManager : MonoBehaviour {
 
@@ -40,6 +41,7 @@ public class GameManager : MonoBehaviour {
         }
         playersKilled = new Queue<string>();
         playersEscaped = new Queue<string>();
+        survivorsEscaped = new List<string>();
     }
     
     // Update is called once per frame
@@ -96,19 +98,23 @@ public class GameManager : MonoBehaviour {
     
     public bool murdererWon;
     public bool survivorsWon;
+    public bool ambiguousWin;
+
+    public List<string> survivorsEscaped;
 
     public void KillPlayer( Player p ) {
         PlayersKilled++;
         playersKilled.Enqueue( "Player " + p.id );
         GameObject.Instantiate( bloodstain, p.gameObject.transform.position, Quaternion.identity );
-        Destroy( p.gameObject );
+        Destroy( p.gameObject, 0.1f );
         Invoke( "ClearKilledPlayer", 2.5f );
     }
 
     public void EscapePlayer( Player p ) {
         PlayersEscaped++;
         playersEscaped.Enqueue( "Player " + p.id );
-        Destroy( p.gameObject );
+        survivorsEscaped.Add( "Player " + p.id );
+        Destroy( p.gameObject, 0.1f );
         Invoke( "ClearEscapedPlayer", 2.5f );
     }
 
@@ -127,10 +133,26 @@ public class GameManager : MonoBehaviour {
     public void MurdererWon()
     {
         murdererWon = true;
+        Invoke( "ResetScene", 4f );
     }
 
     public void SurvivorsWon()
     {
         survivorsWon = true;
+        Invoke( "ResetScene", 4f );
+    }
+
+    public void AmbiguousWin() {
+        ambiguousWin = true;
+        Invoke( "ResetScene", 4f );
+    }
+
+    private void ResetScene() {
+        GamePad.SetVibration( PlayerIndex.One, 0f, 0f );
+        GamePad.SetVibration( PlayerIndex.Two, 0f, 0f );
+        GamePad.SetVibration( PlayerIndex.Three, 0f, 0f );
+        GamePad.SetVibration( PlayerIndex.Four, 0f, 0f );
+
+        Application.LoadLevel( Application.loadedLevel );
     }
 }

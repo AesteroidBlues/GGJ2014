@@ -80,10 +80,14 @@ public abstract class Player : MonoBehaviour {
         }
     }
 
+    bool killed = false;
     public void Kill()
     {
         //play dying sound
-        GameObject.FindGameObjectWithTag( "GameController" ).GetComponent<GameManager>().KillPlayer( this );
-        SoundManager.Instance.PlaySound(SoundManager.Instance.Clips[5]);
+        if ( !killed ) {
+            killed = true;
+            GameObject.FindGameObjectWithTag( "GameController" ).GetComponent<GameManager>().KillPlayer( this );
+            SoundManager.Instance.PlaySound( SoundManager.Instance.Clips[5] );
+        }
     }
 }
