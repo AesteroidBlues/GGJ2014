@@ -22,7 +22,6 @@ public class CameraGUI : MonoBehaviour {
         bool murdererWon = GameObject.FindGameObjectWithTag( "GameController" ).GetComponent<GameManager>().murdererWon;
         bool ambiguousWin = GameObject.FindGameObjectWithTag( "GameController" ).GetComponent<GameManager>().ambiguousWin;
 
-        Debug.LogWarning( survivorsWon );
 
         GUI.BeginGroup( new Rect( Screen.width / 2 - 200, Screen.height / 2 - 50, 600, 400 ) );
         GUI.contentColor = Color.white;

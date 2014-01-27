@@ -7,6 +7,8 @@ public class MainDoor : MonoBehaviour {
 
     public int NumOfObjectsToFind = 6;
     private int ObjectsFound = 0;
+    public AudioClip MainDoorOpen;
+
     void Start () {
     
     }
@@ -25,6 +27,7 @@ public class MainDoor : MonoBehaviour {
         transform.GetChild( 0 ).GetComponent<Animator>().SetTrigger( "OpenDoor" );
         transform.GetChild( 1 ).GetComponent<Animator>().SetTrigger( "OpenDoor" );
         Invoke( "FinishOpen", 0.3f );
+        SoundManager.Instance.PlaySound(MainDoorOpen);
     }
 
     private void FinishOpen() {

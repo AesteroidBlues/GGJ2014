@@ -13,13 +13,12 @@ public class WinCondition : MonoBehaviour {
     void Update () {
         if ( gameManager.PlayersKilled >= 3 ) {
             gameManager.MurdererWon();
-            return;
         } else if ( gameManager.PlayersEscaped >= 3 ) {
             gameManager.SurvivorsWon();
-            return;
-        } else if( (gameManager.PlayersKilled + gameManager.PlayersEscaped ) >= 3 ) {
+        } else if ( gameManager.PlayersKilled + gameManager.PlayersEscaped >= 3) {
             gameManager.AmbiguousWin();
         }
+
     }
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -31,6 +30,7 @@ public class WinCondition : MonoBehaviour {
             if (p.GetType() == typeof(Survivor))
             {
                 gameManager.EscapePlayer(p);
+                SoundManager.Instance.PlaySound(SoundManager.Instance.Clips[6]);
             }
 
         }

@@ -17,6 +17,7 @@ public class Survivor : Player {
             ActionAnim.GetComponent<Animator>().SetBool("PerformAction", true);
             Invoke( "SearchRoom", ActionSpeed );
             CanMove = false;
+            SoundManager.Instance.PlaySound(SoundManager.Instance.Clips[4]);
         }
     }
 
