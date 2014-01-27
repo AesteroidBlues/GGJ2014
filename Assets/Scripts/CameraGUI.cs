@@ -23,7 +23,7 @@ public class CameraGUI : MonoBehaviour {
         bool ambiguousWin = GameObject.FindGameObjectWithTag( "GameController" ).GetComponent<GameManager>().ambiguousWin;
 
 
-        GUI.BeginGroup( new Rect( Screen.width / 2 - 200, Screen.height / 2 - 50, 600, 400 ) );
+        GUI.BeginGroup( new Rect( Screen.width / 2 - 150, Screen.height / 2 - 50, 600, 400 ) );
         GUI.contentColor = Color.white;
         GUI.color = Color.white;
         int y = 0;

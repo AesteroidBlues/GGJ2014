@@ -21,13 +21,18 @@ public class MainDoor : MonoBehaviour {
         }
     }
 
+    bool opened = false;
+
     private void OpenMainDoor()
     {
-        gameObject.GetComponent<BoxCollider2D>().enabled = false;
-        transform.GetChild( 0 ).GetComponent<Animator>().SetTrigger( "OpenDoor" );
-        transform.GetChild( 1 ).GetComponent<Animator>().SetTrigger( "OpenDoor" );
-        Invoke( "FinishOpen", 0.3f );
-        SoundManager.Instance.PlaySound(MainDoorOpen);
+        if ( !opened ) {
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            opened = true;
+            transform.GetChild( 0 ).GetComponent<Animator>().SetTrigger( "OpenDoor" );
+            transform.GetChild( 1 ).GetComponent<Animator>().SetTrigger( "OpenDoor" );
+            Invoke( "FinishOpen", 0.3f );
+            SoundManager.Instance.PlaySound( MainDoorOpen );
+        }
     }
 
     private void FinishOpen() {
