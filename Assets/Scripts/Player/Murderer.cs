@@ -13,7 +13,7 @@ public class Murderer : Player {
     }
 
     private void RightBeat() {
-        Debug.Log( "RightBeat Called" );
+
         GamePad.SetVibration( GetIndex(), 0f, 0.3f );
         Invoke( "LeftBeat", 0.15f );
     }
