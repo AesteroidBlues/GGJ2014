@@ -18,34 +18,32 @@ public class Door : MonoBehaviour {
     {
         if (!opened)
         {
-            Invoke("close", 1.5f);
+            Invoke("PreClose", 1.5f);
+            transform.GetChild( 0 ).GetComponent<Animator>().speed = 1;
+            transform.GetChild( 0 ).GetComponent<Animator>().SetTrigger( "OpenDoor" );
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
             SoundManager.Instance.PlaySound(SoundManager.Instance.Clips[0]);
-            foreach (Transform t in transform)
-            {
-
-                if (t.tag == "OpenDoor")
-                    t.gameObject.SetActive(true);
-                if (t.tag == "ClosedDoor")
-                    t.gameObject.SetActive(false);
-            }
             opened = true;
+            Invoke( "FinishOpen", 0.3f );
         }
+    }
+
+    private void FinishOpen() {
+        transform.GetChild( 0 ).GetComponent<Animator>().speed = 0;
+    }
+
+    private void PreClose() {
+        transform.GetChild( 0 ).GetComponent<Animator>().speed = -1;
+        SoundManager.Instance.PlaySound( SoundManager.Instance.Clips[1] );
+        Invoke( "close", 0.3f );
     }
 
     private void close()
     {
         gameObject.GetComponent<BoxCollider2D>().enabled = true;
-        SoundManager.Instance.PlaySound(SoundManager.Instance.Clips[1]);
+        transform.GetChild( 0 ).GetComponent<Animator>().SetTrigger( "CloseDoor" );
         CancelInvoke("close");
         opened = false;
-        foreach (Transform t in transform)
-        {
-            if (t.tag == "OpenDoor")
-                t.gameObject.SetActive(false);
-            if (t.tag == "ClosedDoor")
-                t.gameObject.SetActive(true);
-        }
     }
 
     void OnTriggerEnter2D(Collider2D collider)
